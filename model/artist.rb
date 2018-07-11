@@ -12,4 +12,10 @@ class Artist
     albums = SqlRunner.run(sql, values)
     @id = albums[0]["id"].to_i
   end
+
+  def self.all
+    sql = "SELECT * FROM artists"
+    artists = SqlRunner.run(sql)
+    return artists.map {|artist_hash| Artist.new(artist_hash)}
+  end
 end
